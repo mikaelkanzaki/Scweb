@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">  
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Sisgeo - Sistema de Gerenciamento</title>
+
+        <!-- Bootstrap CSS >
+        <link href="../css/bootstrap.min.css" rel="stylesheet"/-->
+
+        <!-- PÁGINAS TABELAS -->
+        <script>
+            $(document).ready(function() {
+                //$('#dataTables-example').dataTable();
+            });
+        </script>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </h:head>    
+    <h:body>       
+        <h:form>
+            <h:outputScript library="primefaces" name="jquery/jquery.js" />
+            <p:breadCrumb>
+                <p:menuitem value="Index" url="#" />
+                <p:menuitem value="Pessoa" url="../../pages/pessoa/listaPessoa.jsf" />
+                <p:menuitem value="Funcionário" url="../../pages/funcionario/listaFuncionario.jsf" />
+                <p:menuitem value="Escola" url="#" />
+            </p:breadCrumb>
+            
+            <div style="height:500px">
+                <p:growl id="msgs" showDetail="true" />
+
+                <p:dashboard id="board" model="#{dashboardController.model}">
+                    <p:ajax event="reorder" listener="#{dashboardController.handleReorder}" update="msgs" />
+
+                    <p:panel id="sports" header="Sports">
+                        <h:outputText value="Sports Content" />
+                    </p:panel>
+
+                    <p:panel id="finance" header="Finance">
+                        <h:outputText value="Finance Content" />
+                    </p:panel>
+
+                    <p:panel id="lifestyle" header="Lifestyle">
+                        <h:outputText value="Lifestyle Content"  />
+                    </p:panel>
+
+                    <p:panel id="weather" header="Weather">
+                        <h:outputText value="Weather Content" />
+                    </p:panel>
+
+                    <p:panel id="politics" header="Politics">
+                        <h:outputText value="Politics Content" />
+                    </p:panel>
+                </p:dashboard>
+
+                <div style="clear:both" />
+            </div>
+        </h:form>
+    </h:body>
+    <!-- Bootstrap JavaScript >
+    <script src="../js/bootstrap.min.js"></script-->
+
+</html>

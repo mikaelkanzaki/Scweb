@@ -10,6 +10,7 @@ import br.com.sacweb.basic.BasicDao;
 import br.com.sacweb.model.Funcionario;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -41,4 +42,10 @@ public class ListaFuncionarioController implements Serializable {
         String msg = "ok ok";
     }
     
+    
+    @PreDestroy
+    public void destroy(){
+        String ok = "teste";
+        String msg = "passou aqui";
+    }
 }

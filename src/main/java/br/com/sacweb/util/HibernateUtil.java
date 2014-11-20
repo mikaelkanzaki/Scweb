@@ -27,6 +27,7 @@ import br.com.sacweb.model.Periodo;
 import br.com.sacweb.model.Pessoa;
 import br.com.sacweb.model.Serie;
 import br.com.sacweb.model.Tabelas;
+import java.io.Serializable;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
@@ -34,7 +35,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
  *
  * @author JM
  */
-public class HibernateUtil {
+public class HibernateUtil implements Serializable{
 
     private static final SessionFactory sessionFactory;
 

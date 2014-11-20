@@ -7,6 +7,7 @@ package br.com.sacweb.basic;
 
 import br.com.sacweb.model.Log;
 import br.com.sacweb.util.HibernateUtil;
+import java.io.Serializable;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -16,7 +17,7 @@ import org.hibernate.Transaction;
  *
  * @author JM
  */
-public class BasicDao<T> {
+public class BasicDao<T> implements Serializable {
 
     private Session session = HibernateUtil.getSessionFactory().openSession();
 

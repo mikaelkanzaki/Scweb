@@ -5,26 +5,32 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </h:head> 
     <h:body>
-        <h:dataTable value="#{listaFuncionarioController.listFuncionario}" var="funcionario" id="tableFuncionario" >                                                                                                                                                                                   
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText  value="Matricula"/>
-                </f:facet>
-                <h:outputText value="#{funcionario.funcionarioMat}"/>
-            </h:column>
+        <ui:composition template="../../template/main/template.xhtml">
+            <ui:define name="conteudo">
+                <h:form>
+                <h:commandLink value="Link pessoa">
+                    <f:actionListener binding="#{navigationController.goTo('pessoa/listaPessoa?')}" />
+                </h:commandLink>
+                <h:link value="Link de teste" outcome="/pages/pessoa/listaPessoa" />
+                
+                    <h:dataTable value="#{listaFuncionarioController.listFuncionario}" var="funcionario" id="tableFuncionario" >                                                                                                                                                                                   
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText  value="Matricula"/>
+                            </f:facet>
+                            <h:outputText value="#{funcionario.funcionarioMat}"/>
+                        </h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText  value="Nome"/>
-                </f:facet>                                                    
-                <h:outputText value="#{funcionario.funcionarioPessoa.pessoaNome}"/>                                                    
-            </h:column>                                
-        </h:dataTable>
-
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText  value="Nome"/>
+                            </f:facet>                                                    
+                            <h:outputText value="#{funcionario.funcionarioPessoa.pessoaNome}"/>                                                    
+                        </h:column>                                
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
