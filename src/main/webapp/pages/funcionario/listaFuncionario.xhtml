@@ -10,9 +10,8 @@
             <ui:define name="conteudo">
                 <h:form>
                 <h:commandLink value="Link pessoa">
-                    <f:actionListener binding="#{navigationController.goTo('pessoa/listaPessoa?')}" />
+                    <f:actionListener binding="#{navigationController.goTo('pages/pessoa/listaPessoa.jsf')}" />
                 </h:commandLink>
-                <h:link value="Link de teste" outcome="/pages/pessoa/listaPessoa" />
                 
                     <h:dataTable value="#{listaFuncionarioController.listFuncionario}" var="funcionario" id="tableFuncionario" >                                                                                                                                                                                   
                         <h:column>

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.sacweb.model;
 
 import java.io.Serializable;
@@ -15,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -35,8 +36,15 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cidade.findAll", query = "SELECT c FROM Cidade c"),
     @NamedQuery(name = "Cidade.findByCidadeId", query = "SELECT c FROM Cidade c WHERE c.cidadeId = :cidadeId"),
     @NamedQuery(name = "Cidade.findByCidadeNome", query = "SELECT c FROM Cidade c WHERE c.cidadeNome = :cidadeNome"),
-    @NamedQuery(name = "Cidade.findByCidadeStatus", query = "SELECT c FROM Cidade c WHERE c.cidadeStatus = :cidadeStatus")})
+    @NamedQuery(name = "Cidade.findByCidadeStatus", query = "SELECT c FROM Cidade c WHERE c.cidadeStatus = :cidadeStatus"),
+    @NamedQuery(name = "Cidade.findByIdEstado", query = "SELECT c FROM Cidade c WHERE c.cidadeEstado.estadoId = :estadoId")})
 public class Cidade implements Serializable {
+
+    @OneToMany(mappedBy = "bairroCidade")
+    private List<Bairro> bairroList;
+    @JoinColumn(name = "cidade_estado", referencedColumnName = "estado_id")
+    @ManyToOne
+    private Estado cidadeEstado;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -137,5 +145,22 @@ public class Cidade implements Serializable {
     public String toString() {
         return "br.com.sacweb.model.Cidade[ cidadeId=" + cidadeId + " ]";
     }
-    
+
+    @XmlTransient
+    public List<Bairro> getBairroList() {
+        return bairroList;
+    }
+
+    public void setBairroList(List<Bairro> bairroList) {
+        this.bairroList = bairroList;
+    }
+
+    public Estado getCidadeEstado() {
+        return cidadeEstado;
+    }
+
+    public void setCidadeEstado(Estado cidadeEstado) {
+        this.cidadeEstado = cidadeEstado;
+    }
+
 }

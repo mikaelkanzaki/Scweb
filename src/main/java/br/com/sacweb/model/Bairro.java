@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.sacweb.model;
 
 import java.io.Serializable;
@@ -15,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -35,8 +36,13 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Bairro.findAll", query = "SELECT b FROM Bairro b"),
     @NamedQuery(name = "Bairro.findByBairroId", query = "SELECT b FROM Bairro b WHERE b.bairroId = :bairroId"),
     @NamedQuery(name = "Bairro.findByBairroNome", query = "SELECT b FROM Bairro b WHERE b.bairroNome = :bairroNome"),
-    @NamedQuery(name = "Bairro.findByBairroStatus", query = "SELECT b FROM Bairro b WHERE b.bairroStatus = :bairroStatus")})
+    @NamedQuery(name = "Bairro.findByBairroStatus", query = "SELECT b FROM Bairro b WHERE b.bairroStatus = :bairroStatus"),
+    @NamedQuery(name = "Bairro.findByIdCidade", query = "SELECT b FROM Bairro b WHERE b.bairroCidade.cidadeId = :cidadeId")})
 public class Bairro implements Serializable {
+
+    @JoinColumn(name = "bairro_cidade", referencedColumnName = "cidade_id")
+    @ManyToOne
+    private Cidade bairroCidade;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -137,5 +143,13 @@ public class Bairro implements Serializable {
     public String toString() {
         return "br.com.sacweb.model.Bairro[ bairroId=" + bairroId + " ]";
     }
-    
+
+    public Cidade getBairroCidade() {
+        return bairroCidade;
+    }
+
+    public void setBairroCidade(Cidade bairroCidade) {
+        this.bairroCidade = bairroCidade;
+    }
+
 }

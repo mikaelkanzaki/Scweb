@@ -37,6 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Estado.findByEstadoUf", query = "SELECT e FROM Estado e WHERE e.estadoUf = :estadoUf"),
     @NamedQuery(name = "Estado.findByEstadoStatus", query = "SELECT e FROM Estado e WHERE e.estadoStatus = :estadoStatus")})
 public class Estado implements Serializable {
+    @OneToMany(mappedBy = "cidadeEstado")
+    private List<Cidade> cidadeList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -139,6 +141,15 @@ public class Estado implements Serializable {
     @Override
     public String toString() {
         return "br.com.sacweb.model.Estado[ estadoId=" + estadoId + " ]";
+    }
+
+    @XmlTransient
+    public List<Cidade> getCidadeList() {
+        return cidadeList;
+    }
+
+    public void setCidadeList(List<Cidade> cidadeList) {
+        this.cidadeList = cidadeList;
     }
     
 }

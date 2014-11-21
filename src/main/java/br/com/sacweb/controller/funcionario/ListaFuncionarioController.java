@@ -25,12 +25,6 @@ public class ListaFuncionarioController implements Serializable {
     
     public List<Funcionario> listFuncionario;
     BasicDao<Funcionario> basicDaoFuncionario = new BasicDao<Funcionario>();
-    public String label;
-
-    public String getLabel() {
-        return label = "msg";
-    }
-    
 
     public List<Funcionario> getListFuncionario() {
         listFuncionario = basicDaoFuncionario.list(Funcionario.class);
@@ -38,14 +32,10 @@ public class ListaFuncionarioController implements Serializable {
     }
     
     public ListaFuncionarioController(){
-        String ok = "WTF";
-        String msg = "ok ok";
     }
     
     
     @PreDestroy
     public void destroy(){
-        String ok = "teste";
-        String msg = "passou aqui";
     }
 }

@@ -30,18 +30,19 @@
     </h:head>    
     <h:body>       
         <h:outputScript library="primefaces" name="jquery/jquery.js" />
-        <p:breadCrumb>
-            <p:menuitem value="Index" url="#" />
-            <p:menuitem value="Pessoa" url="../../pages/pessoa/listaPessoa.jsf" />
-            <p:menuitem value="Funcionário" url="../../pages/funcionario/listaFuncionario.jsf" />
-            <p:menuitem value="Escola" url="#" />
-        </p:breadCrumb>
-        <p:layoutUnit position="center">        
-            <ui:insert name="conteudo">
+        <h:form>
+            <p:breadCrumb>
+                <p:menuitem value="Index" url="#" />
+                <p:menuitem value="Pessoa" action="listaPessoa" />
+                <p:menuitem value="Funcionário" action="listaFuncionario" />
+                <p:menuitem value="Escola" url="#" />
+            </p:breadCrumb>
+            <p:layoutUnit position="center">        
+                <ui:insert name="conteudo">
 
-            </ui:insert>                    
-        </p:layoutUnit>  
-
+                </ui:insert>                    
+            </p:layoutUnit>  
+        </h:form>
     </h:body>
     <!-- Bootstrap JavaScript >
     <script src="../js/bootstrap.min.js"></script-->

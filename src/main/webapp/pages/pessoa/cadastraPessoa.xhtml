@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <h:outputStylesheet name="layout.css" />
+        <ui:composition template="../../template/main/template.xhtml">
+
+            <ui:define name="conteudo">
+                <h:form>
+
+                    <p:panelGrid columns="3">
+                        <h:outputLabel for="txtNome" value="Nome:" />
+                        <p:inputText id="txtNome" />
+                        <p:messages id="msgNome" />
+                        
+                        <h:outputLabel for="txtRg" value="RG: " />
+                        <p:inputText id="txtRg" />
+                        <p:messages id="msgRg" />
+                        
+                        <h:outputLabel for="txtEmissor" value="Orgão Emissor: " />
+                        <p:inputText id="txtEmissor" />
+                        <p:messages id="msgEmissor" />
+                        
+                        <h:outputLabel for="txtCpf" value="CPF: " />
+                        <p:inputText id="txtCpf" />
+                        <p:messages id="msgCpf" />
+                        
+                        <h:outputLabel for="txtTitulo" value="Título: " />
+                        <p:inputText id="txtTitulo" />
+                        <p:messages id="msgTitulo" />
+                        
+                        <h:outputLabel for="txtZona" value="Zona: " />
+                        <p:inputText id="txtZona" />
+                        <p:messages id="msgZona" />
+                        
+                        <h:outputLabel for="txtSecao" value="Seção: " />
+                        <p:inputText id="txtSecao" />
+                        <p:messages id="msgSecao" />
+                        
+                        <h:outputLabel for="txtLogradouro" value="Logradouro: " />
+                        <p:inputText id="txtLogradouro" />
+                        <p:messages id="msgLogradouro" />
+                        
+                        <h:outputLabel for="txtNumero" value="Número: " />
+                        <p:inputText id="txtNumero" />
+                        <p:messages id="msgNumero" />
+                        
+                        <h:outputLabel for="txtCep" value="CEP: " />
+                        <p:inputText id="txtCep" />
+                        <p:messages id="msgCep" />
+                        
+                        <h:outputLabel for="txtTelefone1" value="Telefone 1: " />
+                        <p:inputText id="txtTelefone1" />
+                        <p:messages id="msgTelefone1" />
+                        
+                        <h:outputLabel for="txtTelefone2" value="Telefone 2: " />
+                        <p:inputText id="txtTelefone2" />
+                        <p:messages id="msgTelefone2" />
+                        
+                        <h:outputLabel for="sloEstado" value="Estado: " />
+                        <p:selectOneMenu converter="estadoConverter" required="false" id="sloEstado" valueChangeListener="#{cadastraPessoaController.mudaEstado}" value="#{cadastraPessoaController.estado}" >  
+                            <p:ajax update="sloCidade" />
+                            <f:selectItem itemValue="null" itemLabel="Selecione"/>
+                            <f:selectItems value="#{cadastraPessoaController.listaEstado}" var="estado" itemValue="#{estado}" itemLabel="#{estado.estadoNome}"/>
+                        </p:selectOneMenu>
+                        <p:messages id="msgEstado" />
+                        
+                        <h:outputLabel for="sloCidade" value="Cidade: " />
+                        <h:selectOneMenu converter="cidadeConverter" required="false" id="sloCidade" valueChangeListener="#{cadastraPessoaController.mudaCidade}" value="#{cadastraPessoaController.cidade}">
+                            <p:ajax update="sloBairro" />
+                            <f:selectItem itemValue="null" itemLabel="Selecione"/>
+                            <f:selectItems value="#{cadastraPessoaController.listaCidade}" var="cidade" itemValue="#{cidade}" itemLabel="#{cidade.cidadeNome}"/>
+                        </h:selectOneMenu>
+                        <p:messages id="msgCidade" />
+                        
+                        <h:outputLabel for="sloBairro" value="Bairro: " />
+                        <h:selectOneMenu converter="bairroConverter" id="sloBairro" value="#{novaPropriedadeController.bairro}">
+                            <f:selectItem itemValue="null" itemLabel="Selecione"/>
+                            <f:selectItems value="#{cadastraPessoaController.listaBairro}" var="bairro" itemValue="#{bairro}" itemLabel="#{bairro.bairroNome}"/>
+                        </h:selectOneMenu>
+                        <p:messages id="msgBairro" />
+                    </p:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>

@@ -78,4 +78,23 @@ public class BasicDao<T> implements Serializable {
             session.close();
         }
     }
+    
+    public List<T> listById(String namedQuery,String field, int id, Class entityClass){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+
+            transaction.commit();
+            return session.getNamedQuery(namedQuery).setParameter(field, id).list();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            Log log = new Log();
+            log.setLogDescricao(e.getMessage() + '\n' + e.getStackTrace().toString());
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
 }
